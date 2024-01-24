@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import Footer from '@/components/Footer';
+import Logo from '@/assets/logo.svg';
 import LoginForm from './form';
 import LoginBanner from './banner';
 import styles from './style/index.module.less';
-import { ReactComponent as Logo } from '@/assets/logo.svg';
-import Footer from '@/components/Footer';
 
 function Login() {
   useEffect(() => {

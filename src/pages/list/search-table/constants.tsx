@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Typography, Badge } from '@arco-design/web-react';
+import IconText from './icons/text.svg';
+import IconHorizontalVideo from './icons/horizontal.svg';
+import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
-import { ReactComponent as IconText } from './icons/text.svg';
-import { ReactComponent as IconHorizontalVideo } from './icons/horizontal.svg';
-import { ReactComponent as IconVerticalVideo } from './icons/vertical.svg';
 import styles from './style/index.module.less';
 
 const { Text } = Typography;
@@ -20,13 +20,13 @@ const ContentIcon = [
 
 export function getColumns(
   t: any,
-  callback: (record: Record<string, any>, type: string) => Promise<void>,
+  callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
   return [
     {
       title: t['searchTable.columns.id'],
       dataIndex: 'id',
-      render: value => <Text copyable={true}>{value}</Text>,
+      render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: t['searchTable.columns.name'],
@@ -35,7 +35,7 @@ export function getColumns(
     {
       title: t['searchTable.columns.contentType'],
       dataIndex: 'contentType',
-      render: value => (
+      render: (value) => (
         <div className={styles['content-type']}>
           {ContentIcon[value]}
           {ContentType[value]}
@@ -45,7 +45,7 @@ export function getColumns(
     {
       title: t['searchTable.columns.filterType'],
       dataIndex: 'filterType',
-      render: value => FilterType[value],
+      render: (value) => FilterType[value],
     },
     {
       title: t['searchTable.columns.contentNum'],
@@ -58,17 +58,17 @@ export function getColumns(
     {
       title: t['searchTable.columns.createdTime'],
       dataIndex: 'createdTime',
-      render: x => dayjs().subtract(x, 'days').format('YYYY-MM-DD HH:mm:ss'),
+      render: (x) => dayjs().subtract(x, 'days').format('YYYY-MM-DD HH:mm:ss'),
       sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
       title: t['searchTable.columns.status'],
       dataIndex: 'status',
-      render: x => {
+      render: (x) => {
         if (x === 0) {
-          return <Badge status="error" text={Status[x]} />;
+          return <Badge status="error" text={Status[x]}></Badge>;
         }
-        return <Badge status="success" text={Status[x]} />;
+        return <Badge status="success" text={Status[x]}></Badge>;
       },
     },
     {
@@ -79,7 +79,8 @@ export function getColumns(
         <Button
           type="text"
           size="small"
-          onClick={() => callback(record, 'view')}>
+          onClick={() => callback(record, 'view')}
+        >
           {t['searchTable.columns.operations.view']}
         </Button>
       ),

@@ -9,15 +9,15 @@ import {
 } from '@arco-design/web-react';
 import { useSelector } from 'react-redux';
 import { IconCaretUp } from '@arco-design/web-react/icon';
+import OverviewAreaLine from '@/components/Chart/overview-area-line';
 import axios from 'axios';
 import locale from './locale';
-import styles from './style/overview.module.less';
-import { ReactComponent as IconCalendar } from './assets/calendar.svg';
-import { ReactComponent as IconComments } from './assets/comments.svg';
-import { ReactComponent as IconContent } from './assets/content.svg';
-import { ReactComponent as IconIncrease } from './assets/increase.svg';
 import useLocale from '@/utils/useLocale';
-import OverviewAreaLine from '@/components/Chart/overview-area-line';
+import styles from './style/overview.module.less';
+import IconCalendar from './assets/calendar.svg';
+import IconComments from './assets/comments.svg';
+import IconContent from './assets/content.svg';
+import IconIncrease from './assets/increase.svg';
 
 const { Row, Col } = Grid;
 
@@ -35,10 +35,7 @@ function StatisticItem(props: StatisticItemType) {
     <div className={styles.item}>
       <div className={styles.icon}>{icon}</div>
       <div>
-        <Skeleton
-          loading={loading}
-          text={{ rows: 2, width: 60 }}
-          animation={true}>
+        <Skeleton loading={loading} text={{ rows: 2, width: 60 }} animation>
           <div className={styles.title}>{title}</div>
           <div className={styles.count}>
             {count}
@@ -70,7 +67,7 @@ function Overview() {
     setLoading(true);
     axios
       .get('/api/workplace/overview-content')
-      .then(res => {
+      .then((res) => {
         setData(res.data);
       })
       .finally(() => {
@@ -141,7 +138,8 @@ function Overview() {
         <div className={styles.ctw}>
           <Typography.Paragraph
             className={styles['chart-title']}
-            style={{ marginBottom: 0 }}>
+            style={{ marginBottom: 0 }}
+          >
             {t['workplace.contentData']}
             <span className={styles['chart-sub-title']}>
               ({t['workplace.1year']})

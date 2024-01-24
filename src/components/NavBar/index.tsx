@@ -22,23 +22,24 @@ import {
   IconDashboard,
   IconInteraction,
   IconTag,
+  IconLoading,
 } from '@arco-design/web-react/icon';
 import { useSelector, useDispatch } from 'react-redux';
-import Settings from '../Settings';
-import IconButton from './IconButton';
-import styles from './style/index.module.less';
 import { GlobalState } from '@/store';
 import { GlobalContext } from '@/context';
 import useLocale from '@/utils/useLocale';
-import { ReactComponent as Logo } from '@/assets/logo.svg';
+import Logo from '@/assets/logo.svg';
 import MessageBox from '@/components/MessageBox';
+import IconButton from './IconButton';
+import Settings from '../Settings';
+import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
 import { generatePermission } from '@/routes';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
-  const userInfo = useSelector((state: GlobalState) => state.userInfo);
+  const { userInfo, userLoading } = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
 
   const [_, setUserStatus] = useStorage('userStatus');
@@ -101,7 +102,8 @@ function Navbar({ show }: { show: boolean }) {
                 : t['menu.user.role.user']}
             </span>
           </>
-        }>
+        }
+      >
         <Menu.Item onClick={handleChangeRole} key="switch role">
           <IconTag className={styles['dropdown-icon']} />
           {t['menu.user.switchRoles']}
@@ -118,7 +120,8 @@ function Navbar({ show }: { show: boolean }) {
             <IconExperiment className={styles['dropdown-icon']} />
             {t['message.seeMore']}
           </div>
-        }>
+        }
+      >
         <Menu.Item key="workplace">
           <IconDashboard className={styles['dropdown-icon']} />
           {t['menu.dashboard.workplace']}
@@ -142,7 +145,7 @@ function Navbar({ show }: { show: boolean }) {
       <div className={styles.left}>
         <div className={styles.logo}>
           <Logo />
-          <div className={styles['logo-name']}>Arco Pro123</div>
+          <div className={styles['logo-name']}>Arco Pro</div>
         </div>
       </div>
       <ul className={styles.right}>
@@ -166,7 +169,7 @@ function Navbar({ show }: { show: boolean }) {
               position: 'br',
             }}
             trigger="hover"
-            onChange={value => {
+            onChange={(value) => {
               setLang(value);
               const nextLang = defaultLocale[value];
               Message.info(`${nextLang['message.lang.tips']}${value}`);
@@ -184,7 +187,8 @@ function Navbar({ show }: { show: boolean }) {
               theme === 'light'
                 ? t['settings.navbar.theme.toDark']
                 : t['settings.navbar.theme.toLight']
-            }>
+            }
+          >
             <IconButton
               icon={theme !== 'dark' ? <IconMoonFill /> : <IconSunFill />}
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
@@ -194,9 +198,13 @@ function Navbar({ show }: { show: boolean }) {
         <Settings />
         {userInfo && (
           <li>
-            <Dropdown droplist={droplist} position="br">
+            <Dropdown droplist={droplist} position="br" disabled={userLoading}>
               <Avatar size={32} style={{ cursor: 'pointer' }}>
-                <img alt="avatar" src={userInfo.avatar} />
+                {userLoading ? (
+                  <IconLoading />
+                ) : (
+                  <img alt="avatar" src={userInfo.avatar} />
+                )}
               </Avatar>
             </Dropdown>
           </li>
