@@ -1,6 +1,6 @@
 const i18n = {
   'en-US': {
-    'workplace.welcomeBack': 'Welcome Back,',
+    'workplace.welcomeBack': 'Welcome Back123123,',
     'workplace.totalOnlyData': 'Total online data',
     'workplace.contentInMarket': 'Content in market',
     'workplace.comments': 'Comments',
@@ -8,12 +8,12 @@ const i18n = {
     'workplace.contentData': 'Content Data',
     'workplace.1year': 'Nearly 1 Year',
     'workplace.seeMore': 'See More',
-    'workplace.popularContents': 'Popular Contents',
+    'workplace.popularContents': 'Popular Co123123ntents',
     'workplace.text': 'Text',
     'workplace.image': 'Image',
     'workplace.video': 'Video',
     'workplace.column.rank': 'Rank',
-    'workplace.column.title': 'Title',
+    'workplace.column.title': 'Tit123123le',
     'workplace.column.pv': 'PV',
     'workplace.column.increase': 'Daily Increase',
     'workplace.contentPercentage': 'Percentage of content categories',

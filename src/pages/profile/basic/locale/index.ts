@@ -2,7 +2,7 @@ const i18n = {
   'en-US': {
     'menu.profile': 'Profile',
     'menu.profile.basic': 'Basic Profile',
-    'basicProfile.title.form': 'Parameter Approval Process Table',
+    'basicProfile.title.form': 'Parameter Approval Process Table123123',
     'basicProfile.steps.commit': 'Commit',
     'basicProfile.steps.approval': 'Approval',
     'basicProfile.steps.finish': 'Finish',

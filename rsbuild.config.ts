@@ -1,9 +1,25 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
+import { pluginLightningcss } from '@rsbuild/plugin-lightningcss';
 
 export default defineConfig({
-  plugins: [pluginReact(), pluginSvgr({ svgDefaultExport: 'component' })],
+  plugins: [
+    pluginReact(),
+    pluginSvgr({
+      svgrOptions: {
+        exportType: 'default',
+      },
+    }),
+    pluginLightningcss(),
+  ],
+  tools: {
+    rspack: {
+      experiments: {
+        lazyCompilation: true,
+      },
+    },
+  },
   source: {
     transformImport: [
       {
